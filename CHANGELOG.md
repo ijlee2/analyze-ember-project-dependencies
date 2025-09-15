@@ -1,5 +1,11 @@
 # analyze-ember-project-dependencies
 
+## 1.1.0
+
+### Minor Changes
+
+- [#1](https://github.com/ijlee2/analyze-ember-project-dependencies/pull/1) Copied files from the embroider-toolbox repo ([@ijlee2](https://github.com/ijlee2))
+
 ## 1.0.7
 
 ### Patch Changes
