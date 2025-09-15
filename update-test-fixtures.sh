@@ -16,8 +16,8 @@
 pnpm build
 
 # Update fixtures
-rm -r "tests/fixtures/sample-project/output"
-cp -r "tests/fixtures/sample-project/input" "tests/fixtures/sample-project/output"
+rm -r "tests/fixtures/my-project/output"
+cp -r "tests/fixtures/my-project/input" "tests/fixtures/my-project/output"
 
 ./dist/bin/analyze-ember-project-dependencies.js \
-  --root "tests/fixtures/sample-project/output"
+  --root "tests/fixtures/my-project/output"

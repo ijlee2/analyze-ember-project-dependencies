@@ -1,16 +1,18 @@
 {
   "name": "analyze-ember-project-dependencies",
-  "version": "0.0.0",
-  "private": true,
-  "description": "Small description for analyze-ember-project-dependencies goes here",
+  "version": "1.0.7",
+  "description": "Analyze dependencies of an Ember project",
   "keywords": [
     "codemod",
     "ember-codemod",
     "emberjs"
   ],
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ijlee2/analyze-ember-project-dependencies.git"
+  },
   "license": "MIT",
-  "author": "",
+  "author": "Isaac J. Lee",
   "type": "module",
   "main": "dist/src/index.js",
   "bin": "dist/bin/analyze-ember-project-dependencies.js",
@@ -59,8 +61,8 @@
     "prettier": "^3.6.2",
     "typescript": "^5.9.2"
   },
+  "packageManager": "pnpm@10.15.1",
   "engines": {
     "node": "20.* || >= 22"
-  },
-  "packageManager": "pnpm@10.15.1"
+  }
 }
