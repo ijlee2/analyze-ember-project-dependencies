@@ -1,5 +1,12 @@
 # analyze-ember-project-dependencies
 
+## 1.1.1
+
+### Patch Changes
+
+- [#3](https://github.com/ijlee2/analyze-ember-project-dependencies/pull/3) Updated links in CHANGELOG ([@ijlee2](https://github.com/ijlee2))
+- [#2](https://github.com/ijlee2/analyze-ember-project-dependencies/pull/2) Updated dependencies ([@ijlee2](https://github.com/ijlee2))
+
 ## 1.1.0
 
 ### Minor Changes
