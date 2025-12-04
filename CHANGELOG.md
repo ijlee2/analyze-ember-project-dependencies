@@ -1,5 +1,11 @@
 # analyze-ember-project-dependencies
 
+## 1.2.0
+
+### Minor Changes
+
+- [#5](https://github.com/ijlee2/analyze-ember-project-dependencies/pull/5) Supported Windows ([@ijlee2](https://github.com/ijlee2))
+
 ## 1.1.2
 
 ### Patch Changes
