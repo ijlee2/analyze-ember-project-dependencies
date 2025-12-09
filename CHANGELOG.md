@@ -1,5 +1,11 @@
 # analyze-ember-project-dependencies
 
+## 1.2.2
+
+### Patch Changes
+
+- [#7](https://github.com/ijlee2/analyze-ember-project-dependencies/pull/7) Downstreamed changes from @codemod-utils/cli@3.9.0 ([@ijlee2](https://github.com/ijlee2))
+
 ## 1.2.1
 
 ### Patch Changes
