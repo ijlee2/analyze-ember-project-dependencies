@@ -1,8 +1,12 @@
 import { getPackageType, type PackageJson } from '@codemod-utils/package-json';
 
-import type { PackageName } from '../../types/index.js';
+import type { PackageName, PackageType } from '../../types/index.js';
 
-export function analyzePackageJson(packageJson: PackageJson) {
+export function analyzePackageJson(packageJson: PackageJson): {
+  dependencies: Set<PackageName>;
+  devDependencies: Set<PackageName>;
+  packageType: PackageType;
+} {
   const dependencies = new Set<PackageName>(
     [
       ...Object.keys(packageJson['dependencies'] ?? {}),
