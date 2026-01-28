@@ -1,5 +1,11 @@
 # analyze-ember-project-dependencies
 
+## 1.2.4
+
+### Patch Changes
+
+- [#9](https://github.com/ijlee2/analyze-ember-project-dependencies/pull/9) Updated dependencies ([@ijlee2](https://github.com/ijlee2))
+
 ## 1.2.3
 
 ### Patch Changes
