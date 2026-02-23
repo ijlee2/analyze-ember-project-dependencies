@@ -1,5 +1,11 @@
 # analyze-ember-project-dependencies
 
+## 2.0.0
+
+### Major Changes
+
+- [#11](https://github.com/ijlee2/analyze-ember-project-dependencies/pull/11) Dropped support for Node 20 ([@ijlee2](https://github.com/ijlee2))
+
 ## 1.2.5
 
 ### Patch Changes
