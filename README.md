@@ -26,7 +26,7 @@ Step 1. Run the codemod (e.g. at the workspace root of a monorepo).
 
 ```sh
 cd <path/to/your/project>
-npx analyze-ember-project-dependencies
+pnpx analyze-ember-project-dependencies
 ```
 
 Step 2. Check the output for true positives.
@@ -41,7 +41,7 @@ Step 2. Check the output for true positives.
 By default, apps and addons follow the flat component structure for components. Pass `--component-structure` to indicate otherwise.
 
 ```sh
-npx analyze-ember-project-dependencies --component-structure nested
+pnpx analyze-ember-project-dependencies --component-structure nested
 ```
 
 </details>
@@ -53,7 +53,7 @@ npx analyze-ember-project-dependencies --component-structure nested
 Pass `--root` to run the codemod somewhere else (i.e. not in the current directory).
 
 ```sh
-npx analyze-ember-project-dependencies --root <path/to/your/project>
+pnpx analyze-ember-project-dependencies --root <path/to/your/project>
 ```
 
 </details>
