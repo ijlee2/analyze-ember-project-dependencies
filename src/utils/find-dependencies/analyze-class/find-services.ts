@@ -9,12 +9,12 @@ function dasherize(value: string): string {
 }
 
 export function findServices(file: string, data: Data): PackageAnalysis {
-  const { services } = data.entities;
+  const { entities, filePath } = data;
 
   const dependencies = new Set<string>();
   const unknowns = new Set<string>();
 
-  const isTypeScript = data.filePath.endsWith('.ts');
+  const isTypeScript = filePath.endsWith('.ts');
   const traverse = AST.traverse(isTypeScript);
 
   traverse(file, {
@@ -52,7 +52,7 @@ export function findServices(file: string, data: Data): PackageAnalysis {
         return false;
       }
 
-      const dependency = services.get(serviceName);
+      const dependency = entities.services.get(serviceName);
 
       if (dependency) {
         dependencies.add(dependency);

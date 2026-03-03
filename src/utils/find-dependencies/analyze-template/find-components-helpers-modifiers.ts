@@ -51,7 +51,7 @@ export function findComponentsHelpersModifiers(
   file: string,
   data: Data,
 ): PackageAnalysis {
-  const { components, helpers, modifiers } = data.entities;
+  const { entities } = data;
 
   const blockParams = findBlockParams(file);
   const dependencies = new Set<string>();
@@ -71,7 +71,7 @@ export function findComponentsHelpersModifiers(
         return;
       }
 
-      const dependency = modifiers.get(modifierName);
+      const dependency = entities.modifiers.get(modifierName);
 
       if (dependency) {
         dependencies.add(dependency);
@@ -97,7 +97,7 @@ export function findComponentsHelpersModifiers(
       }
 
       const entityName = invertDoubleColonize(componentName);
-      const dependency = components.get(entityName);
+      const dependency = entities.components.get(entityName);
 
       if (dependency) {
         dependencies.add(dependency);
@@ -121,7 +121,7 @@ export function findComponentsHelpersModifiers(
         return;
       }
 
-      const dependency = helpers.get(helperName);
+      const dependency = entities.helpers.get(helperName);
 
       if (dependency) {
         dependencies.add(dependency);
@@ -151,7 +151,7 @@ export function findComponentsHelpersModifiers(
           return;
         }
 
-        const dependency = components.get(componentName);
+        const dependency = entities.components.get(componentName);
 
         if (dependency) {
           dependencies.add(dependency);
@@ -170,7 +170,7 @@ export function findComponentsHelpersModifiers(
         return;
       }
 
-      const dependency = helpers.get(helperName);
+      const dependency = entities.helpers.get(helperName);
 
       if (dependency) {
         dependencies.add(dependency);
