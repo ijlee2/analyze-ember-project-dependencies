@@ -1,5 +1,11 @@
 # analyze-ember-project-dependencies
 
+## 2.0.1
+
+### Patch Changes
+
+- [#12](https://github.com/ijlee2/analyze-ember-project-dependencies/pull/12) Removed the need for componentsDoubleColonized ([@ijlee2](https://github.com/ijlee2))
+
 ## 2.0.0
 
 ### Major Changes
