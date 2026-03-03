@@ -19,7 +19,6 @@ function mergeEntities(
 
   return {
     components: mergeByType('components'),
-    componentsDoubleColonized: mergeByType('componentsDoubleColonized'),
     helpers: mergeByType('helpers'),
     modifiers: mergeByType('modifiers'),
     services: mergeByType('services'),
