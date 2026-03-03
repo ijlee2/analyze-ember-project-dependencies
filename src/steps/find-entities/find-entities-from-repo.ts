@@ -3,7 +3,6 @@ import type { Entities, EntityType, ProjectData } from '../../types/index.js';
 export function findEntitiesFromRepo(projectData: ProjectData): Entities {
   const entities: Entities = {
     components: new Map(),
-    componentsDoubleColonized: new Map(),
     helpers: new Map(),
     modifiers: new Map(),
     services: new Map(),

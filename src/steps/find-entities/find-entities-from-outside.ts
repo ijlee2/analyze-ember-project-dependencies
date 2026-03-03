@@ -4,7 +4,6 @@ import { KNOWN_ENTITIES } from '../../utils/find-entities/index.js';
 export function findEntitiesFromOutside(): Entities {
   const entities: Entities = {
     components: new Map(),
-    componentsDoubleColonized: new Map(),
     helpers: new Map(),
     modifiers: new Map(),
     services: new Map(),

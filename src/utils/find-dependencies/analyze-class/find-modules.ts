@@ -37,10 +37,12 @@ function ignore(moduleName: string): boolean {
 }
 
 export function findModules(file: string, data: Data): PackageAnalysis {
+  const { filePath } = data;
+
   const dependencies = new Set<string>();
   const unknowns = new Set<string>();
 
-  const isTypeScript = data.filePath.endsWith('.ts');
+  const isTypeScript = filePath.endsWith('.ts');
   const traverse = AST.traverse(isTypeScript);
 
   traverse(file, {

@@ -27,12 +27,7 @@ type PackageData = {
 
 type EntityName = string;
 
-type EntityType =
-  | 'components'
-  | 'componentsDoubleColonized'
-  | 'helpers'
-  | 'modifiers'
-  | 'services';
+type EntityType = 'components' | 'helpers' | 'modifiers' | 'services';
 
 type Entities = Record<EntityType, Map<EntityName, PackageName>>;
 

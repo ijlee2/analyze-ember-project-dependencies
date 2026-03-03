@@ -1,4 +1,3 @@
-import { doubleColonize } from '@codemod-utils/ember';
 import { findFiles } from '@codemod-utils/files';
 
 import type {
@@ -31,7 +30,6 @@ export function analyzeEntities(
 
   const entities: ProjectDataEntities = {
     components: [],
-    componentsDoubleColonized: [],
     helpers: [],
     modifiers: [],
     services: [],
@@ -68,7 +66,6 @@ export function analyzeEntities(
       }
 
       entities['components'] = entityNames;
-      entities['componentsDoubleColonized'] = entityNames.map(doubleColonize);
 
       return;
     }

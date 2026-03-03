@@ -1,4 +1,5 @@
 import { AST } from '@codemod-utils/ast-template';
+import { invertDoubleColonize } from '@codemod-utils/ember';
 
 import type { PackageAnalysis } from '../../../types/index.js';
 import type { Data } from '../index.js';
@@ -50,8 +51,7 @@ export function findComponentsHelpersModifiers(
   file: string,
   data: Data,
 ): PackageAnalysis {
-  const { components, componentsDoubleColonized, helpers, modifiers } =
-    data.entities;
+  const { entities } = data;
 
   const blockParams = findBlockParams(file);
   const dependencies = new Set<string>();
@@ -71,7 +71,7 @@ export function findComponentsHelpersModifiers(
         return;
       }
 
-      const dependency = modifiers.get(modifierName);
+      const dependency = entities.modifiers.get(modifierName);
 
       if (dependency) {
         dependencies.add(dependency);
@@ -83,6 +83,11 @@ export function findComponentsHelpersModifiers(
     ElementNode(node) {
       const componentName = node.tag;
 
+      // Don't convert native <input> and <textarea> tags
+      if (componentName === 'input' || componentName === 'textarea') {
+        return;
+      }
+
       if (!isComponent(componentName)) {
         return;
       }
@@ -91,7 +96,8 @@ export function findComponentsHelpersModifiers(
         return;
       }
 
-      const dependency = componentsDoubleColonized.get(componentName);
+      const entityName = invertDoubleColonize(componentName);
+      const dependency = entities.components.get(entityName);
 
       if (dependency) {
         dependencies.add(dependency);
@@ -115,7 +121,7 @@ export function findComponentsHelpersModifiers(
         return;
       }
 
-      const dependency = helpers.get(helperName);
+      const dependency = entities.helpers.get(helperName);
 
       if (dependency) {
         dependencies.add(dependency);
@@ -145,7 +151,7 @@ export function findComponentsHelpersModifiers(
           return;
         }
 
-        const dependency = components.get(componentName);
+        const dependency = entities.components.get(componentName);
 
         if (dependency) {
           dependencies.add(dependency);
@@ -164,7 +170,7 @@ export function findComponentsHelpersModifiers(
         return;
       }
 
-      const dependency = helpers.get(helperName);
+      const dependency = entities.helpers.get(helperName);
 
       if (dependency) {
         dependencies.add(dependency);
