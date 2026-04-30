@@ -45,16 +45,14 @@ export function findModules(file: string, data: Data): PackageAnalysis {
   const traverse = AST.traverse(isTypeScript);
 
   traverse(file, {
-    visitCallExpression(node) {
+    visitCallExpression(path) {
       let moduleName: string | undefined;
 
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      switch (node.value.callee.type) {
+      switch (path.node.callee.type) {
         case 'Identifier': {
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-          if (node.value.callee.name === 'require') {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-            moduleName = node.value.arguments[0].value as string;
+          if (path.node.callee.name === 'require') {
+            // @ts-expect-error: Incorrect type
+            moduleName = path.node.arguments[0]!.value as string;
           }
 
           break;
@@ -62,13 +60,13 @@ export function findModules(file: string, data: Data): PackageAnalysis {
 
         case 'MemberExpression': {
           if (
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-            node.value.callee.object.name === 'require' &&
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-            node.value.callee.property.name === 'resolve'
+            // @ts-expect-error: Incorrect type
+            path.node.callee.object.name === 'require' &&
+            // @ts-expect-error: Incorrect type
+            path.node.callee.property.name === 'resolve'
           ) {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-            moduleName = node.value.arguments[0].value as string;
+            // @ts-expect-error: Incorrect type
+            moduleName = path.node.arguments[0]!.value as string;
           }
 
           break;
@@ -88,14 +86,8 @@ export function findModules(file: string, data: Data): PackageAnalysis {
       return false;
     },
 
-    visitExportAllDeclaration(node) {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      if (node.value.source === null) {
-        return false;
-      }
-
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      const moduleName = node.value.source.value as string;
+    visitExportAllDeclaration(path) {
+      const moduleName = path.node.source.value as string;
 
       if (ignore(moduleName)) {
         return false;
@@ -106,14 +98,12 @@ export function findModules(file: string, data: Data): PackageAnalysis {
       return false;
     },
 
-    visitExportNamedDeclaration(node) {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      if (node.value.source === null) {
+    visitExportNamedDeclaration(path) {
+      if (!path.node.source) {
         return false;
       }
 
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      const moduleName = node.value.source.value as string;
+      const moduleName = path.node.source.value as string;
 
       if (ignore(moduleName)) {
         return false;
@@ -124,9 +114,8 @@ export function findModules(file: string, data: Data): PackageAnalysis {
       return false;
     },
 
-    visitImportDeclaration(node) {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      const moduleName = node.value.source.value as string;
+    visitImportDeclaration(path) {
+      const moduleName = path.node.source.value as string;
 
       if (ignore(moduleName)) {
         return false;

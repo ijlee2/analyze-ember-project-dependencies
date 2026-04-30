@@ -3,6 +3,8 @@ import { AST } from '@codemod-utils/ast-javascript';
 import type { PackageAnalysis } from '../../../types/index.js';
 import type { Data } from '../index.js';
 
+type Decorator = ReturnType<typeof AST.builders.decorator>;
+
 function dasherize(value: string): string {
   return value.replace(/([a-z\d])([A-Z])/g, '$1-$2').toLowerCase();
 }
@@ -17,37 +19,34 @@ export function findServices(file: string, data: Data): PackageAnalysis {
   const traverse = AST.traverse(isTypeScript);
 
   traverse(file, {
-    visitClassProperty(node) {
-      if (
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        !Array.isArray(node.value.decorators) ||
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        node.value.decorators.length !== 1
-      ) {
+    visitClassProperty(path) {
+      // @ts-expect-error: Incorrect type
+      const decorators = path.node.decorators as Decorator[];
+
+      if (!Array.isArray(decorators) || decorators.length !== 1) {
         return false;
       }
 
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
-      const decorator = node.value.decorators[0];
+      const decorator = decorators[0]!;
       let serviceName: string | undefined;
 
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       switch (decorator.expression.type) {
         case 'CallExpression': {
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-          if (decorator.expression.callee.name == 'service') {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-            serviceName = decorator.expression.arguments[0].value as string;
+          if (
+            decorator.expression.callee.type === 'Identifier' &&
+            decorator.expression.callee.name === 'service'
+          ) {
+            // @ts-expect-error: Incorrect type
+            serviceName = decorator.expression.arguments[0]!.value as string;
           }
 
           break;
         }
 
         case 'Identifier': {
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
           if (decorator.expression.name === 'service') {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-            serviceName = dasherize(node.value.key.name as string);
+            // @ts-expect-error: Incorrect type
+            serviceName = dasherize(path.node.key.name as string);
           }
 
           break;
