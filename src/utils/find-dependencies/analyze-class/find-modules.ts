@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { AST } from '@codemod-utils/ast-javascript';
 
 import type { PackageAnalysis } from '../../../types/index.js';
@@ -49,9 +48,12 @@ export function findModules(file: string, data: Data): PackageAnalysis {
     visitCallExpression(node) {
       let moduleName: string | undefined;
 
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       switch (node.value.callee.type) {
         case 'Identifier': {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
           if (node.value.callee.name === 'require') {
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
             moduleName = node.value.arguments[0].value as string;
           }
 
@@ -60,9 +62,12 @@ export function findModules(file: string, data: Data): PackageAnalysis {
 
         case 'MemberExpression': {
           if (
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
             node.value.callee.object.name === 'require' &&
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
             node.value.callee.property.name === 'resolve'
           ) {
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
             moduleName = node.value.arguments[0].value as string;
           }
 
@@ -84,10 +89,12 @@ export function findModules(file: string, data: Data): PackageAnalysis {
     },
 
     visitExportAllDeclaration(node) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       if (node.value.source === null) {
         return false;
       }
 
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       const moduleName = node.value.source.value as string;
 
       if (ignore(moduleName)) {
@@ -100,10 +107,12 @@ export function findModules(file: string, data: Data): PackageAnalysis {
     },
 
     visitExportNamedDeclaration(node) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       if (node.value.source === null) {
         return false;
       }
 
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       const moduleName = node.value.source.value as string;
 
       if (ignore(moduleName)) {
@@ -116,6 +125,7 @@ export function findModules(file: string, data: Data): PackageAnalysis {
     },
 
     visitImportDeclaration(node) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       const moduleName = node.value.source.value as string;
 
       if (ignore(moduleName)) {

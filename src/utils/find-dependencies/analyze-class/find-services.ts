@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { AST } from '@codemod-utils/ast-javascript';
 
 import type { PackageAnalysis } from '../../../types/index.js';
@@ -20,19 +19,24 @@ export function findServices(file: string, data: Data): PackageAnalysis {
   traverse(file, {
     visitClassProperty(node) {
       if (
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         !Array.isArray(node.value.decorators) ||
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         node.value.decorators.length !== 1
       ) {
         return false;
       }
 
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
       const decorator = node.value.decorators[0];
       let serviceName: string | undefined;
 
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       switch (decorator.expression.type) {
         case 'CallExpression': {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
           if (decorator.expression.callee.name == 'service') {
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
             serviceName = decorator.expression.arguments[0].value as string;
           }
 
@@ -40,7 +44,9 @@ export function findServices(file: string, data: Data): PackageAnalysis {
         }
 
         case 'Identifier': {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
           if (decorator.expression.name === 'service') {
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
             serviceName = dasherize(node.value.key.name as string);
           }
 
