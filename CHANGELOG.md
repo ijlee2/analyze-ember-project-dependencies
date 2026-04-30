@@ -1,5 +1,15 @@
 # analyze-ember-project-dependencies
 
+## 2.1.0
+
+### Minor Changes
+
+- [#15](https://github.com/ijlee2/analyze-ember-project-dependencies/pull/15) Fixed lint errors ([@ijlee2](https://github.com/ijlee2))
+
+### Patch Changes
+
+- [#16](https://github.com/ijlee2/analyze-ember-project-dependencies/pull/16) Updated dependencies ([@ijlee2](https://github.com/ijlee2))
+
 ## 2.0.3
 
 ### Patch Changes
