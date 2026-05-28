@@ -1,5 +1,11 @@
 # analyze-ember-project-dependencies
 
+## 2.1.3
+
+### Patch Changes
+
+- [#19](https://github.com/ijlee2/analyze-ember-project-dependencies/pull/19) Updated `@codemod-utils/ast-javascript` to v4 ([@ijlee2](https://github.com/ijlee2))
+
 ## 2.1.2
 
 ### Patch Changes
