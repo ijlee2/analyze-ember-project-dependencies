@@ -25,13 +25,9 @@ function ignore(moduleName: string): boolean {
     return true;
   }
 
-  if (
-    MODULE_PREFIXES_TO_IGNORE.some((prefix) => moduleName.startsWith(prefix))
-  ) {
-    return true;
-  }
-
-  return false;
+  return MODULE_PREFIXES_TO_IGNORE.some((prefix) => {
+    return moduleName.startsWith(prefix);
+  });
 }
 
 export function findModules(file: string): PackageAnalysis {

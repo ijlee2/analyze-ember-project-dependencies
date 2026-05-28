@@ -3,7 +3,7 @@ import { findModules, findServices } from './analyze-class/index.js';
 import type { Data } from './index.js';
 
 export function analyzeClass(file: string, data: Data): PackageAnalysis {
-  const resultsForModules = findModules(file, data);
+  const resultsForModules = findModules(file);
   const resultsForServices = findServices(file, data);
 
   return {
