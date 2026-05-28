@@ -1,5 +1,11 @@
 # analyze-ember-project-dependencies
 
+## 2.2.0
+
+### Minor Changes
+
+- [#20](https://github.com/ijlee2/analyze-ember-project-dependencies/pull/20) Updated dependencies (`@codemod-utils/ast-template` to v4) ([@ijlee2](https://github.com/ijlee2))
+
 ## 2.1.3
 
 ### Patch Changes
