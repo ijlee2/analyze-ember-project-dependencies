@@ -15,9 +15,7 @@ export function findServices(file: string, data: Data): PackageAnalysis {
   const dependencies = new Set<string>();
   const unknowns = new Set<string>();
 
-  const traverse = AST.traverse();
-
-  traverse(file, {
+  AST.traverse(file, {
     visitClassProperty(path) {
       // @ts-expect-error: Incorrect type
       const decorators = path.node.decorators as Decorator[];
