@@ -1,7 +1,6 @@
 import { AST } from '@codemod-utils/ast-javascript';
 
 import type { PackageAnalysis } from '../../../types/index.js';
-import type { Data } from '../index.js';
 
 const MODULE_PREFIXES_TO_IGNORE: string[] = [
   '.',
@@ -26,23 +25,16 @@ function ignore(moduleName: string): boolean {
     return true;
   }
 
-  if (
-    MODULE_PREFIXES_TO_IGNORE.some((prefix) => moduleName.startsWith(prefix))
-  ) {
-    return true;
-  }
-
-  return false;
+  return MODULE_PREFIXES_TO_IGNORE.some((prefix) => {
+    return moduleName.startsWith(prefix);
+  });
 }
 
-export function findModules(file: string, data: Data): PackageAnalysis {
-  const { filePath } = data;
-
+export function findModules(file: string): PackageAnalysis {
   const dependencies = new Set<string>();
   const unknowns = new Set<string>();
 
-  const isTypeScript = filePath.endsWith('.ts');
-  const traverse = AST.traverse(isTypeScript);
+  const traverse = AST.traverse();
 
   traverse(file, {
     visitCallExpression(path) {

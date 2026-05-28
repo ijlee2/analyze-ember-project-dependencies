@@ -10,13 +10,12 @@ function dasherize(value: string): string {
 }
 
 export function findServices(file: string, data: Data): PackageAnalysis {
-  const { entities, filePath } = data;
+  const { entities } = data;
 
   const dependencies = new Set<string>();
   const unknowns = new Set<string>();
 
-  const isTypeScript = filePath.endsWith('.ts');
-  const traverse = AST.traverse(isTypeScript);
+  const traverse = AST.traverse();
 
   traverse(file, {
     visitClassProperty(path) {
