@@ -7,9 +7,7 @@ import type { Data } from '../index.js';
 function findBlockParams(file: string): Set<string> {
   const blockParams = new Set<string>();
 
-  const traverse = AST.traverse();
-
-  traverse(file, {
+  AST.traverse(file, {
     Block(node) {
       node.blockParams.forEach((blockParam) => {
         blockParams.add(blockParam);
@@ -57,9 +55,7 @@ export function findComponentsHelpersModifiers(
   const dependencies = new Set<string>();
   const unknowns = new Set<string>();
 
-  const traverse = AST.traverse();
-
-  traverse(file, {
+  AST.traverse(file, {
     ElementModifierStatement(node) {
       if (node.path.type !== 'PathExpression') {
         return;

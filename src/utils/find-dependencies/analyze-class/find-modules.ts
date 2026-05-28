@@ -34,9 +34,7 @@ export function findModules(file: string): PackageAnalysis {
   const dependencies = new Set<string>();
   const unknowns = new Set<string>();
 
-  const traverse = AST.traverse();
-
-  traverse(file, {
+  AST.traverse(file, {
     visitCallExpression(path) {
       let moduleName: string | undefined;
 
