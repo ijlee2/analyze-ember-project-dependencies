@@ -1,5 +1,11 @@
 # analyze-ember-project-dependencies
 
+## 2.2.2
+
+### Patch Changes
+
+- [#22](https://github.com/ijlee2/analyze-ember-project-dependencies/pull/22) Updated dependencies (eslint@v10, typescript@v6) ([@ijlee2](https://github.com/ijlee2))
+
 ## 2.2.1
 
 ### Patch Changes
