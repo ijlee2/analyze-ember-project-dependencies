@@ -18,9 +18,9 @@ export function findServices(file: string, data: Data): PackageAnalysis {
   AST.traverse(file, {
     visitClassProperty(path) {
       // @ts-expect-error: Incorrect type
-      const decorators = path.node.decorators as Decorator[];
+      const decorators = path.node.decorators as Decorator[] | undefined;
 
-      if (!Array.isArray(decorators) || decorators.length !== 1) {
+      if (decorators === undefined || decorators.length !== 1) {
         return false;
       }
 
@@ -31,19 +31,27 @@ export function findServices(file: string, data: Data): PackageAnalysis {
         case 'CallExpression': {
           if (
             decorator.expression.callee.type === 'Identifier' &&
-            decorator.expression.callee.name === 'service'
+            decorator.expression.callee.name === 'service' &&
+            path.node.key.type === 'Identifier'
           ) {
-            // @ts-expect-error: Incorrect type
-            serviceName = decorator.expression.arguments[0]!.value as string;
+            const param = decorator.expression.arguments[0];
+
+            if (param === undefined) {
+              serviceName = dasherize(path.node.key.name);
+            } else if (param.type === 'StringLiteral') {
+              serviceName = param.value;
+            }
           }
 
           break;
         }
 
         case 'Identifier': {
-          if (decorator.expression.name === 'service') {
-            // @ts-expect-error: Incorrect type
-            serviceName = dasherize(path.node.key.name as string);
+          if (
+            decorator.expression.name === 'service' &&
+            path.node.key.type === 'Identifier'
+          ) {
+            serviceName = dasherize(path.node.key.name);
           }
 
           break;
