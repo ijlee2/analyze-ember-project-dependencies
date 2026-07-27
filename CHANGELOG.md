@@ -1,5 +1,11 @@
 # analyze-ember-project-dependencies
 
+## 2.2.3
+
+### Patch Changes
+
+- [#24](https://github.com/ijlee2/analyze-ember-project-dependencies/pull/24) Supported the syntax `@service()` ([@ijlee2](https://github.com/ijlee2))
+
 ## 2.2.2
 
 ### Patch Changes
