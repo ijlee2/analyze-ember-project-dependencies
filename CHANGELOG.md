@@ -1,5 +1,11 @@
 # analyze-ember-project-dependencies
 
+## 2.2.8
+
+### Patch Changes
+
+- [#30](https://github.com/ijlee2/analyze-ember-project-dependencies/pull/30) Updated dependencies (replaced eslint with oxlint) ([@ijlee2](https://github.com/ijlee2))
+
 ## 2.2.7
 
 ### Patch Changes
