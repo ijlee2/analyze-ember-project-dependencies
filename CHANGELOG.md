@@ -1,5 +1,12 @@
 # analyze-ember-project-dependencies
 
+## 2.2.9
+
+### Patch Changes
+
+- [#32](https://github.com/ijlee2/analyze-ember-project-dependencies/pull/32) Updated dependencies ([@ijlee2](https://github.com/ijlee2))
+- [#31](https://github.com/ijlee2/analyze-ember-project-dependencies/pull/31) Introduced trusted publishing ([@ijlee2](https://github.com/ijlee2))
+
 ## 2.2.8
 
 ### Patch Changes
