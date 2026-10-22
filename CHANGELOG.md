@@ -1,5 +1,11 @@
 # analyze-ember-project-dependencies
 
+## 2.2.10
+
+### Patch Changes
+
+- [#33](https://github.com/ijlee2/analyze-ember-project-dependencies/pull/33) Updated @codemod-utils/ast-template to 4.1.3 (@glimmer/syntax to 0.97.0) ([@ijlee2](https://github.com/ijlee2))
+
 ## 2.2.9
 
 ### Patch Changes
