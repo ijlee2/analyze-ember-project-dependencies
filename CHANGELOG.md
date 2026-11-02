@@ -1,5 +1,11 @@
 # analyze-ember-project-dependencies
 
+## 2.2.12
+
+### Patch Changes
+
+- [#35](https://github.com/ijlee2/analyze-ember-project-dependencies/pull/35) Downgraded @types/node and typescript ([@ijlee2](https://github.com/ijlee2))
+
 ## 2.2.11
 
 ### Patch Changes
